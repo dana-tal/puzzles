@@ -2,17 +2,19 @@
 body {
   font-family: "Arial", sans-serif;
   text-align: center;
-  padding: 20px;
-  background:#77BFC7 /* #f0f0f0;*/
+  /*padding: 20px; */
+  background:#77BFC7; /* #f0f0f0;*/
 }
+
 
 .game-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
- /*  background-color:white; */
+  gap: 40px;
+  margin-top:10%;
 }
+
 
 .reference-image {
   display: flex;

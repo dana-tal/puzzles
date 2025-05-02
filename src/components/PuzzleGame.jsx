@@ -56,12 +56,13 @@ const PuzzleGame = (props) => {
 
   useEffect(() => {
      shuffle();  
-  }, []);
+  }, [imgUrl]);
 
 
   return (
     <div className="game-container">
-        <select onChange={changePic} >
+
+<select onChange={changePic} >
             <option value='lake_mountains.jpg'> Select</option>
             <option value='cat_flower.jpeg'>Cat Smelling FLowers</option> 
             <option value='cats.jpeg'>Cats</option>
@@ -72,30 +73,36 @@ const PuzzleGame = (props) => {
             <option value='lake_boat.jpg'>Lake Boat</option>
             <option value='sunset.jpg'>Sunset</option>
         </select>
-        <div className="reference-image">
-            <img src={imgUrl} alt="Reference Image" />
-        </div>
 
-        <div className="puzzle-container">
-        {positions.map((pos, index) => {
-          const x = (pos % 4) * 100;
-          const y = Math.floor(pos / 4) * 100;
-          return (
-            <div
-              key={index}
-              className="puzzle-piece"
-              draggable
-              onDragStart={(e) => handleDragStart(e, index)}
-              onDrop={(e) => handleDrop(e, index)}
-              onDragOver={handleDragOver}
-              style={{
-                backgroundImage: `url('${imgUrl}')`,
-                backgroundPosition: `-${x}px -${y}px`
-              }}
-            />
-          );
-        })}
-      </div>
+          <div className="reference-image">
+              <img src={imgUrl} alt="Reference Image" />
+          </div>
+
+          <div className="puzzle-container">
+
+          
+     
+
+          {positions.map((pos, index) => {
+            const x = (pos % 4) * 100;
+            const y = Math.floor(pos / 4) * 100;
+            return (
+              <div
+                key={index}
+                className="puzzle-piece"
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDrop={(e) => handleDrop(e, index)}
+                onDragOver={handleDragOver}
+                style={{
+                  backgroundImage: `url('${imgUrl}')`,
+                  backgroundPosition: `-${x}px -${y}px`
+                }}
+              />
+            );
+          })}
+        </div>
+      
 
     </div>
   );
