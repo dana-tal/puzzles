@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import imgUrl from '/house.jpg';
+//import imgUrl from '/house.jpg';
 
 
 // Defining the PuzzleGame component
-const PuzzleGame = () => {
+const PuzzleGame = (props) => {
   // This component will handle the game logic and UI
 
 
@@ -33,6 +33,7 @@ const PuzzleGame = () => {
   };
 
 
+  const [imgUrl, setImageUrl] = useState('/images/lake_mountains.jpg');
 
   const [positions, setPositions] = useState([...Array(16).keys()]); // positions intial value is [0,1,2,3,....,15]
 
@@ -47,6 +48,12 @@ const PuzzleGame = () => {
 
   }
 
+  const changePic = (e)=>
+  {
+      console.log(e.target.value);
+      setImageUrl('/images/'+e.target.value);
+  }
+
   useEffect(() => {
      shuffle();  
   }, []);
@@ -54,7 +61,17 @@ const PuzzleGame = () => {
 
   return (
     <div className="game-container">
-        
+        <select onChange={changePic} >
+            <option value='lake_mountains.jpg'> Select</option>
+            <option value='cat_flower.jpeg'>Cat Smelling FLowers</option> 
+            <option value='cats.jpeg'>Cats</option>
+            <option value='golden_dogs.webp'>Dogs</option> 
+            <option value='lake_house.jpg'>Lake House</option>
+            <option value='lake_mountains.jpg'>Lake Mountains</option>
+            <option value='green_valley.jpeg'>Green Vallye</option>
+            <option value='lake_boat.jpg'>Lake Boat</option>
+            <option value='sunset.jpg'>Sunset</option>
+        </select>
         <div className="reference-image">
             <img src={imgUrl} alt="Reference Image" />
         </div>
