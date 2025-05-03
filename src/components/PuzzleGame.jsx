@@ -26,14 +26,18 @@ const PuzzleGame = (props) => {
       return newPos;
     });
 
-    
+    if (!userInteracted)
+    {
+       setUserInteracted(true);
+    }
 
   };
 
 
   const playSound = (soundFile) => {
-    const audio = new Audio(`/sounds/${soundFile}.mp3`); // If it's in the public folder
-    audio.play();
+      const audio = new Audio(`/sounds/${soundFile}.mp3`); // If it's in the public folder
+      audio.play();
+    
   };
 
 
@@ -62,19 +66,14 @@ const PuzzleGame = (props) => {
 
 
   const [imgUrl, setImageUrl] = useState('/images/lake_mountains.jpg');
+  const [ userInteracted, setUserInteracted] = useState(false);
 
   const [positions, setPositions] = useState([...Array(16).keys()]); // positions intial value is [0,1,2,3,....,15]
 
    console.log("positions:");
    console.log(positions);
 
-   // check victory
-   if ( game_over() )
-    {
-         console.log( "You won :-) !!! ");
-         playSound('success');
-    }
-
+  
    // Shuffle the positions for the initial puzzle setup
   const shuffle = () => {
 
@@ -96,6 +95,16 @@ const PuzzleGame = (props) => {
      shuffle();  
   }, [imgUrl]);
 
+
+  useEffect(() => {
+     // check victory
+    if (userInteracted && game_over() )
+      {
+           console.log( "You won :-) !!! ");
+           playSound('success');
+      }
+  
+ }, [positions,userInteracted])
 
   return (
     <div className="game-container">
