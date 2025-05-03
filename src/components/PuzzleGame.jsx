@@ -25,7 +25,35 @@ const PuzzleGame = (props) => {
       ];
       return newPos;
     });
+
+    
+
   };
+
+
+  const playSound = (soundFile) => {
+    const audio = new Audio(`/sounds/${soundFile}.mp3`); // If it's in the public folder
+    audio.play();
+  };
+
+
+  const game_over= () =>{
+
+    let user_won = true;
+    let i;
+
+      for(i=0; i< positions.length && user_won ; i++)
+      {
+          if ( i !== positions[i] )
+          {
+            user_won = false;
+          }
+      }
+      console.log("user won:");
+      console.log(user_won);
+      return user_won;   
+    
+  }
 
   // Allowing the drop action by preventing default behavior
   const handleDragOver = (e) => {
@@ -36,6 +64,16 @@ const PuzzleGame = (props) => {
   const [imgUrl, setImageUrl] = useState('/images/lake_mountains.jpg');
 
   const [positions, setPositions] = useState([...Array(16).keys()]); // positions intial value is [0,1,2,3,....,15]
+
+   console.log("positions:");
+   console.log(positions);
+
+   // check victory
+   if ( game_over() )
+    {
+         console.log( "You won :-) !!! ");
+         playSound('success');
+    }
 
    // Shuffle the positions for the initial puzzle setup
   const shuffle = () => {

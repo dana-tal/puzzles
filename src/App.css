@@ -4,6 +4,7 @@ body {
   text-align: center;
   /*padding: 20px; */
   background:#77BFC7; /* #f0f0f0;*/
+  background-image: linear-gradient(to bottom right,white, #77BFC7,white,#CFECEC,#CFECEC,white,#77BFC7, white);
 }
 
 
