@@ -131,8 +131,12 @@ const PuzzleGame = (props) => {
      
 
           {positions.map((pos, index) => {
-            const x = (pos % 4) * 100;
-            const y = Math.floor(pos / 4) * 100;
+           /*  const x = (pos % 4) * 100;
+            const y = Math.floor(pos / 4) * 100; */
+
+            const x = (pos % 4) * 200;
+            const y = Math.floor(pos / 4) * 200;
+
             return (
               <div
                 key={index}
