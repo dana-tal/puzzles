@@ -1,37 +1,10 @@
 import React, { useState, useEffect } from "react";
-//import imgUrl from '/house.jpg';
-
+import { createDragHandlers } from '../utils/event_handlers'; 
 
 // Defining the PuzzleGame component
 const PuzzleGame = (props) => {
   // This component will handle the game logic and UI
 
-
-  // Handling the start of a drag event
-  const handleDragStart = (e, position) => {
-    e.dataTransfer.setData("text/plain", position);
-  };
-
-  // Handling the drop event
-  const handleDrop = (e, position) => {
-    e.preventDefault();
-    const originalPosition = e.dataTransfer.getData("text");
-    // Add logic here to swap positions of puzzle pieces
-    setPositions((prevPositions) => {
-      const newPos = [...prevPositions];
-      [newPos[originalPosition], newPos[position]] = [
-        newPos[position],
-        newPos[originalPosition]
-      ];
-      return newPos;
-    });
-
-    if (!userInteracted)
-    {
-       setUserInteracted(true);
-    }
-
-  };
 
 
   const playSound = (soundFile) => {
@@ -59,16 +32,15 @@ const PuzzleGame = (props) => {
     
   }
 
-  // Allowing the drop action by preventing default behavior
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
 
   const [imgUrl, setImageUrl] = useState('/images/lake_mountains.jpg');
   const [ userInteracted, setUserInteracted] = useState(false);
 
   const [positions, setPositions] = useState([...Array(16).keys()]); // positions intial value is [0,1,2,3,....,15]
+
+
+  const { handleDrop,handleDragStart, handleDragOver } = createDragHandlers({userInteracted, setUserInteracted,setPositions });
+
 
    console.log("positions:");
    console.log(positions);
